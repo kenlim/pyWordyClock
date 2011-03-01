@@ -1,0 +1,3 @@
+[console_scripts]
+pyWordyClock = pyWordyClock.app:main
+

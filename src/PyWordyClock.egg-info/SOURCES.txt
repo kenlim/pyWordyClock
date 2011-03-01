@@ -1,0 +1,8 @@
+setup.py
+src/PyWordyClock.egg-info/PKG-INFO
+src/PyWordyClock.egg-info/SOURCES.txt
+src/PyWordyClock.egg-info/dependency_links.txt
+src/PyWordyClock.egg-info/entry_points.txt
+src/PyWordyClock.egg-info/top_level.txt
+src/pyWordyClock/__init__.py
+src/pyWordyClock/app.py

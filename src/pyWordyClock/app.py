@@ -1,0 +1,17 @@
+import sys
+
+def main():
+    print """ITLISASTIME
+ACQUARTERDC
+TWENTYFIVEX
+HALFBTENFTO
+PASTERUNINE
+ONESIXTHREE
+FOURFIVETWO
+EIGHTELEVEN
+SEVENTWELVE
+TENSEOCLOCK"""
+    return 0
+
+if __name__ =='__main__':
+    sys.exit(main())
