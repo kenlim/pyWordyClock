@@ -1,5 +1,6 @@
+import re
 from unittest import TestCase
-from pyWordyClock.WordyClockConverter import roundToClosest5Minutes, convertToWords
+from pyWordyClock.WordyClockConverter import roundToClosest5Minutes, convertToWords, convertToRegex, blankOutTargetFromBase
 
 
 class AcceptanceTest(TestCase):
@@ -32,3 +33,14 @@ class AcceptanceTest(TestCase):
         self.assertEquals("it is a quarter to ten o' clock", convertToWords(9, 45))
 
 
+    def testShouldConvertTargetStringIntoRegularExpression(self):
+        targetString  = "it is ten to ten o' clock"
+        self.assertEquals(".*(it).*(is).*(ten).*(to).*(ten).*(o').*(clock).*", convertToRegex(targetString))
+        
+    def testShouldBlankOutCharsThatDoNotMatchStrings(self):
+        baseString = "xxxxxtargetxxxlockedxxx"
+        self.assertEquals("     target   locked   ", blankOutTargetFromBase("target locked", baseString))
+
+    def testShouldWorkWithNewLines(self):
+        baseString = "xxxxxtarget\nlockedxxx"
+        self.assertEquals("     target\nlocked   ", blankOutTargetFromBase("target locked", baseString))

@@ -1,8 +1,8 @@
 import sys
 from time import localtime
-from pyWordyClock.WordyClockConverter import convertToWords, roundToClosest5Minutes, roundToClosest5Minutes
+from pyWordyClock.WordyClockConverter import convertToWords, roundToClosest5Minutes, roundToClosest5Minutes, blankOutTargetFromBase
 
-baseClock = """ITLISASTIME
+baseClock = """ITLISABOUTE
 ACQUARTERDC
 TWENTYFIVEX
 HALFBTENFTO
@@ -11,13 +11,16 @@ ONESIXTHREE
 FOURFIVETWO
 EIGHTELEVEN
 SEVENTWELVE
-TENSEOCLOCK"""
+TENIO'CLOCK"""
 
 def main():
     clock = localtime()
     hour, minutes = roundToClosest5Minutes(clock.tm_hour, clock.tm_min)
-    print convertToWords(hour, minutes)
+
+    wordyTime = convertToWords(hour, minutes)
+    print blankOutTargetFromBase(wordyTime.upper(), baseClock)
     return 0
 
-if __name__ =='__main__':
-    sys.exit(main())
+def othermain():
+    print baseClock
+    return 0

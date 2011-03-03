@@ -1,3 +1,6 @@
+import re
+
+
 hourNames = { 1 : 'one',
                 2 : 'two',
                 3 : 'three',
@@ -43,3 +46,19 @@ def convertToWords(hour, minutes):
         return constructString(hour + 1, minutes)
     else:
         return constructString(hour, minutes)
+
+def convertToRegex(string):
+    return ".*" + ".*".join(["(" + x + ")" for x in string.split(" ")]) + ".*"
+
+
+def blankOutTargetFromBase(target, baseString):
+    targetRegex = convertToRegex(target)
+    blankedString = re.sub(".", " ", baseString)
+    matcher = re.match(targetRegex, baseString, re.DOTALL)
+    outputArray = list(blankedString)
+
+    for x in range(1, len(matcher.groups()) +1):
+        outputArray[matcher.start(x) : matcher.end(x)] = [y for y in matcher.group(x)]
+
+    return "".join(outputArray)
+
