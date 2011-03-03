@@ -12,21 +12,22 @@ hourNames = { 1 : 'one',
                 12: 'twelve'
             }
 
-minuteNames = { 0: '',
+minuteNames = { 0: None,
                 5: 'five past',
                 10: 'ten past',
-                15:'quarter past',
+                15:'a quarter past',
                 20:'twenty past',
                 25: 'twenty five past',
                 30: 'half past',
                 35: 'twenty five to',
                 40:'twenty to',
-                45: 'quarter to',
+                45: 'a quarter to',
                 50: 'ten to',
                 55: 'five to'
             }
 
 def roundToClosest5Minutes(hour, minutes):
+    hour = hour % 12
     minutes = round(minutes / 5.0) * 5
     if minutes == 60:
         return (hour +1, 0)
@@ -34,7 +35,8 @@ def roundToClosest5Minutes(hour, minutes):
         return (hour, minutes)
 
 def constructString(hour, minutes):
-    return " ".join(["it is", minuteNames[minutes], hourNames[hour], "o' clock"])
+    components = ["it is", minuteNames[minutes], hourNames[hour], "o' clock"]
+    return " ".join([x for x in components if x != None])
 
 def convertToWords(hour, minutes):
     if minutes > 30:

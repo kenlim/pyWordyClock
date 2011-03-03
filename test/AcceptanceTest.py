@@ -20,13 +20,15 @@ class AcceptanceTest(TestCase):
     def testShouldRoundToNextHourIfWithin2AndAHalfMinutes(self):
         self.assertEquals((2,0), roundToClosest5Minutes(1, 58))
 
+    def testShouldConvert24hourTimeTo12(self):
+        self.assertEquals((1,0), roundToClosest5Minutes(13, 2))
 
     def testShouldConvertTimeToWordsCorrectly(self):
-        self.assertEquals("it is  ten o' clock", convertToWords(10, 0))
+        self.assertEquals("it is ten o' clock", convertToWords(10, 0))
         self.assertEquals("it is ten past ten o' clock", convertToWords(10, 10))
 
     def testShouldDisplayTimeToNextHourIfPast30Minutes(self):
         self.assertEquals("it is ten to ten o' clock", convertToWords(9, 50))
-        self.assertEquals("it is quarter to ten o' clock", convertToWords(9, 45))
+        self.assertEquals("it is a quarter to ten o' clock", convertToWords(9, 45))
 
 
