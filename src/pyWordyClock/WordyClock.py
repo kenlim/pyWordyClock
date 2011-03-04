@@ -1,7 +1,20 @@
 import re
+from time import localtime
 
+clockFace = """\
+ITLISXABOUT
+ACQUARTERDC
+TWENTYRFIVE
+HALFBTENFTO
+PASTEXSNINE
+ONESIXTHREE
+FOURFIVETWO
+EIGHTELEVEN
+TENMIDNIGHT
+SEVENTYNOON"""
 
-hourNames = { 1 : 'one',
+hourNames = {   0 : 'midnight',
+                1 : 'one',
                 2 : 'two',
                 3 : 'three',
                 4: 'four',
@@ -12,7 +25,19 @@ hourNames = { 1 : 'one',
                 9: 'nine',
                 10: 'ten',
                 11: 'eleven',
-                12: 'twelve'
+                12: 'noon',
+                13 : 'one',
+                14 : 'two',
+                15 : 'three',
+                16: 'four',
+                17: 'five',
+                18: 'six',
+                19 : 'seven',
+                20: 'eight',
+                21: 'nine',
+                22: 'ten',
+                23: 'eleven',
+                24: 'midnight'
             }
 
 minuteNames = { 0: None,
@@ -30,22 +55,21 @@ minuteNames = { 0: None,
             }
 
 def roundToClosest5Minutes(hour, minutes):
-    hour = hour % 12
     minutes = round(minutes / 5.0) * 5
     if minutes == 60:
         return (hour +1, 0)
     else:
         return (hour, minutes)
 
-def constructString(hour, minutes):
-    components = ["it is", minuteNames[minutes], hourNames[hour], "o' clock"]
+def constructString(minutesRelativeTo, hour):
+    components = ["it is", minuteNames[minutesRelativeTo], hourNames[hour]]
     return " ".join([x for x in components if x != None])
 
 def convertToWords(hour, minutes):
     if minutes > 30:
-        return constructString(hour + 1, minutes)
+        return constructString(minutes, hour + 1)
     else:
-        return constructString(hour, minutes)
+        return constructString(minutes, hour)
 
 def convertToRegex(string):
     return ".*" + ".*".join(["(" + x + ")" for x in string.split(" ")]) + ".*"
@@ -54,6 +78,7 @@ def convertToRegex(string):
 def blankOutTargetFromBase(target, baseString):
     targetRegex = convertToRegex(target)
     blankedString = re.sub(".", " ", baseString)
+
     matcher = re.match(targetRegex, baseString, re.DOTALL)
     outputArray = list(blankedString)
 
@@ -61,4 +86,18 @@ def blankOutTargetFromBase(target, baseString):
         outputArray[matcher.start(x) : matcher.end(x)] = [y for y in matcher.group(x)]
 
     return "".join(outputArray)
+
+
+
+def main():
+    clock = localtime()
+    hour, minutes = roundToClosest5Minutes(clock.tm_hour, clock.tm_min)
+
+    wordyTime = convertToWords(hour, minutes)
+    print blankOutTargetFromBase(wordyTime.upper(), clockFace)
+    return 0
+
+def otherMain():
+    print clockFace
+    return 0
 

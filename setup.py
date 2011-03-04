@@ -9,8 +9,8 @@ setup(
 
     entry_points = {
         'console_scripts' : [
-            'pyWordyClock = pyWordyClock.app:main',
-            'pyWordyBaseClock = pyWordyClock.app:othermain'
+            'pyWordyClock = pyWordyClock.WordyClock:main',
+            'pyWordyClockFace = pyWordyClock.WordyClock:otherMain'
         ]
     }
 )

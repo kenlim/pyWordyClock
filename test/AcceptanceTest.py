@@ -1,6 +1,6 @@
 import re
 from unittest import TestCase
-from pyWordyClock.WordyClockConverter import roundToClosest5Minutes, convertToWords, convertToRegex, blankOutTargetFromBase
+from pyWordyClock.WordyClock import *
 
 
 class AcceptanceTest(TestCase):
@@ -21,21 +21,25 @@ class AcceptanceTest(TestCase):
     def testShouldRoundToNextHourIfWithin2AndAHalfMinutes(self):
         self.assertEquals((2,0), roundToClosest5Minutes(1, 58))
 
-    def testShouldConvert24hourTimeTo12(self):
-        self.assertEquals((1,0), roundToClosest5Minutes(13, 2))
-
     def testShouldConvertTimeToWordsCorrectly(self):
-        self.assertEquals("it is ten o' clock", convertToWords(10, 0))
-        self.assertEquals("it is ten past ten o' clock", convertToWords(10, 10))
+        self.assertEquals("it is ten", convertToWords(10, 0))
+        self.assertEquals("it is ten past ten", convertToWords(10, 10))
 
     def testShouldDisplayTimeToNextHourIfPast30Minutes(self):
-        self.assertEquals("it is ten to ten o' clock", convertToWords(9, 50))
-        self.assertEquals("it is a quarter to ten o' clock", convertToWords(9, 45))
+        self.assertEquals("it is ten to ten", convertToWords(9, 50))
+        self.assertEquals("it is a quarter to ten", convertToWords(9, 45))
 
+    def testShouldRecognizeMidnight(self):
+        self.assertEquals("it is midnight", convertToWords(0,0))
+        self.assertEquals("it is five to midnight", convertToWords(23, 55))
+
+    def testShouldRecognizeNoon(self):
+        self.assertEquals("it is noon", convertToWords(12, 0))
+        self.assertEquals("it is ten past noon", convertToWords(12, 10))
 
     def testShouldConvertTargetStringIntoRegularExpression(self):
-        targetString  = "it is ten to ten o' clock"
-        self.assertEquals(".*(it).*(is).*(ten).*(to).*(ten).*(o').*(clock).*", convertToRegex(targetString))
+        targetString  = "it is ten to ten"
+        self.assertEquals(".*(it).*(is).*(ten).*(to).*(ten).*", convertToRegex(targetString))
         
     def testShouldBlankOutCharsThatDoNotMatchStrings(self):
         baseString = "xxxxxtargetxxxlockedxxx"
@@ -44,3 +48,8 @@ class AcceptanceTest(TestCase):
     def testShouldWorkWithNewLines(self):
         baseString = "xxxxxtarget\nlockedxxx"
         self.assertEquals("     target\nlocked   ", blankOutTargetFromBase("target locked", baseString))
+
+    def testActualUseCase(self):
+        expectedResult = "IT IS      \n           \n           \n     TEN TO\n           \n           \n           \n           \nTEN        \n           "
+
+        self.assertEquals(expectedResult, blankOutTargetFromBase("it is ten to ten".upper(), clockFace))
