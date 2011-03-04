@@ -1,0 +1,26 @@
+pyWordyClock is a simple command line script that outputs an artsy, approximate, multiline clock. 
+
+Usage:
+run "pyWordyClockFace" to see the full clock face.
+run "pyWordyClock" to see the time projected on the clock face. 
+
+Putting it on your desktop. 
+pyWordyClock works great with simple "text on your desktop" type applications such as:
+ - GeekTool3 on Mac OS X
+ - Conky on Linux
+ - Rainmeter on Windows
+ 
+While the integration process is different per application, the implementation is the same:
+
+1. Place the clock face on the Desktop. 
+  - Create a widget that will display the output of "pyWordyClockFace" to get clock face on the desktop. 
+  - The font should be monospaced, and the font should not be as bright as the color of the actual clock. 
+  
+2. Place the actual clock on the Desktop as well
+  - Create another widget that will display the output of "pyWordyClock" on the desktop.
+  - The font should be exactly the same as the clock face. It should have a brighter color to stand out. 
+  
+3. Position the actual clock directly over the clock face
+  - I find it easier to get the absolute position of the clock face, and then use those same numbers with clock.
+  
+4. Save and you're done!
