@@ -22,7 +22,7 @@
     h2 { font-size: 1.5em; color: #5383ac; }
     h3 { text-align: center; color: #5383ac; }
     a { color: #ffffff; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
+      .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
     .download { float: right; }
     pre { background: #71918f; color: #fff; padding: 15px;}
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
@@ -42,21 +42,33 @@
         <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
     </div>
 
-    <h1><a href="http://github.com/kenlim/pyWordyClock">pyWordyClock</a>
-      <span class="small">by <a href="http://github.com/kenlim">kenlim</a></span></h1>
+    <h1><a href="http://github.com/kenlim/pyWordyClock">pyWordyClock</a></h1>
 
+
+	
     <div class="description">
-      pyWordyClock is a simple command line script that outputs an artsy, approximate, multiline clock.
+    
+    <img src="images/pyWordyClock-mac_desktop.jpg">
+    </div>
+    <div class="description">
+      <p>pyWordyClock is a simple command line script that outputs an artsy, approximate, multiline clock.</p>
+      <p>It works pretty well with "text on desktop apps" like:</p>
+      <ul>
+      <li>GeekTool3 on Mac Ox X</li>
+      <li>Conky on Linux</li>
+      <li>Rainmeter on Windows (in theory, have no experience)</li>
+      </ul>
     </div>
 
-    <h2>Authors</h2>
-<p>kenlim (kennethlimfc@gmail.com)<br/><br/>      </p>
-<h2>Contact</h2>
-<p>Ken Lim (kennethlimfc@gmail.com)<br/>      </p>
+    <h2>Mac OS X instructions</h2>
+    <p>You will need:</p>
+    <ul>
+    <li>GeekTool3</li>
+    <li>Python (which comes standard on Mac OS X</li>
+    </ul>
 
-
-    <h2>Download</h2>
-    <p>
+	<h2>Download pyWordyClock</h2>
+	<p>
       You can download this project in either
       <a href="http://github.com/kenlim/pyWordyClock/zipball/master">zip</a> or
       <a href="http://github.com/kenlim/pyWordyClock/tarball/master">tar</a> formats.
@@ -65,7 +77,23 @@
       by running:
       <pre>$ git clone git://github.com/kenlim/pyWordyClock</pre>
     </p>
-
+    
+    <h2>Install pyWordyClock</h2>
+    <ul>
+    <li>Unzip the downloaded file.</li>
+    <li>Open up the Terminal and "cd" to that location.</li>
+    <li>Then do this:
+    <pre>$ sudo python setup.py install</pre></li>      
+    </ul>    
+    
+    <h2>Create a clock face widget in GeekTool3</h2>
+    <p>Use GeekTools to create the background "Clock Face" widget.</p>
+    <img src="images/pywordyclock-clockfacecreation.jpg">
+    <h2>Create the clock widget in GeekTool3</h2>
+    <img src="images/pywordyclock-widgetcreation.jpg">
+    
+    <h2>Align the clock widget on top of the clock face widget</h2>
+<img src="images/pywordyclock-align.jpg">
     <div class="footer">
       get the source code on GitHub : <a href="http://github.com/kenlim/pyWordyClock">kenlim/pyWordyClock</a>
     </div>
