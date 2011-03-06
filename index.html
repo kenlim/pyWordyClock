@@ -54,9 +54,9 @@
       <p>pyWordyClock is a simple command line script that outputs an artsy, approximate, multiline clock.</p>
       <p>It works pretty well with "text on desktop apps" like:</p>
       <ul>
-      <li>GeekTool3 on Mac Ox X</li>
-      <li>Conky on Linux</li>
-      <li>Rainmeter on Windows (in theory, have no experience)</li>
+      <li><a href="http://projects.tynsoe.org/en/geektool/">GeekTool 3</a> on Mac OS X</li>
+      <li><a href="http://conky.sourceforge.net/">Conky</a> on Linux</li>
+      <li>.. and maybe <a href="http://rainmeter.net/RainCMS/">Rainmeter</a> on Windows (sorry, I haven't got a Windows box to test this)</li>
       </ul>
     </div>
 
@@ -77,8 +77,7 @@
       by running:
       <pre>$ git clone git://github.com/kenlim/pyWordyClock</pre>
     </p>
-    
-    <h2>Install pyWordyClock</h2>
+         <h2>Install pyWordyClock</h2>
     <ul>
     <li>Unzip the downloaded file.</li>
     <li>Open up the Terminal and "cd" to that location.</li>
@@ -87,13 +86,34 @@
     </ul>    
     
     <h2>Create a clock face widget in GeekTool3</h2>
-    <p>Use GeekTools to create the background "Clock Face" widget.</p>
+    <p>Use GeekTool3 to create the background "Clock Face" widget:</p>
+    <ul>
+    <li>Create a new "Shell Widget".</li>
+    <li>Set the "Command" to "pyWordyClockFace"</li>
+    <li>Let it refresh every 60 seconds (it is approximate, after all)</li>
+    <li>Set the font to something big, but with "Fixed Width", like "Andale Mono"</li>
+    <li>Make sure that the text is right justified.</li>
+    <li>Make a note of the position</li>
+    </ul> 
     <img src="images/pywordyclock-clockfacecreation.jpg">
+    
+    
     <h2>Create the clock widget in GeekTool3</h2>
+    <p>Use GeekTool3 to create the clock widget itself:</p>
+    <ul>
+    <li>Create a new "Shell Widget".</li>
+    <li>Duplicate all the settings from the Clock Face widget above</li>
+    <li>Change the "Command" to "pyWordyClock"</li>
+    <li>Set the font colour to be brighter than the Clock Face so that it will stand out.</li>
+    </ul>
     <img src="images/pywordyclock-widgetcreation.jpg">
     
     <h2>Align the clock widget on top of the clock face widget</h2>
+    <p>Use the same positioning data as the Clock Face Widget for the Clock, and it should align perfectly</p>
+    
 <img src="images/pywordyclock-align.jpg">
+
+<p>... and you're done!</p>
     <div class="footer">
       get the source code on GitHub : <a href="http://github.com/kenlim/pyWordyClock">kenlim/pyWordyClock</a>
     </div>
